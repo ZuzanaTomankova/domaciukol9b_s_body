@@ -1,0 +1,7 @@
+{
+    "contribution": "To je dnes krásnì!",
+    "contributionId": 2,
+    "isVisible": true,
+    "user": "Zuzka"
+}
+
