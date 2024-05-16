@@ -7,6 +7,7 @@ import com.engeto.domaciukol9b.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 
@@ -19,12 +20,21 @@ public class ContributionController {
 
     @PostMapping("user")
     public String createUser(@RequestBody User user) {
+        boolean idExists = false;
+        for (User existingUser : users) {
+            if (Objects.equals(existingUser.getContributionId(), user.getContributionId())) {
+                idExists = true;
+                break;
+            }
+        }
 
-        if(!users.contains(user.getContributionId()))
-        {   users.add(user);
-            contributionService.saveToFile(users);}
-
-        return "409 Id exists";
+        if (!idExists) {
+            users.add(user);
+            contributionService.saveToFile(users);
+            return "Uživatel vytvořen.";
+        } else {
+            return "409 Id already exists";
+        }
     }
 
 
