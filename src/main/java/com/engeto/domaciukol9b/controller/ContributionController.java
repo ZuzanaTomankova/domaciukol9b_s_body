@@ -20,12 +20,15 @@ public class ContributionController {
     @PostMapping("user")
     public String createUser(@RequestBody User user) {
         users.add(user);
-        if(users.contains(user.getContributionId()))
+        if(!users.contains(user.getContributionId()))
         {
-        contributionService.saveToFile(users);}
+            contributionService.saveToFile(users);}
 
         return "409 Id exists";
     }
+
+
+
 
     @GetMapping("user")
     public List<User> getAllUserst(){
