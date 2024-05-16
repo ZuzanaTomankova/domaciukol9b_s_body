@@ -19,9 +19,9 @@ public class ContributionController {
 
     @PostMapping("user")
     public String createUser(@RequestBody User user) {
-        users.add(user);
+
         if(!users.contains(user.getContributionId()))
-        {
+        {   users.add(user);
             contributionService.saveToFile(users);}
 
         return "409 Id exists";
